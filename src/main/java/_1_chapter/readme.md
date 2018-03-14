@@ -89,3 +89,50 @@
   ```
 - You can tell that a class is on `default` package because it does not have a package name.
 - Why we need packages? Avoid naming conflicts and allow others reuse.
+
+### Coding Format on Exam
+
+- If the exam isn't asking about imports the line numbers will NOT begin with 1.
+  ``` 
+   6: public void method(ArrayList list) {
+   7:   if (list.isEmpty()){
+   8:     System.out.println("e");
+   9:   } else {
+  10:    System.out.println("n");
+  11:   }
+  12: } 
+  ```
+- If you see line number 1 or no lines number it means you have to make sure imports aren't missing.
+- The exam will let you know what package classes are in unless they are covered in the objectives.
+- You will be expected to know that `ArrayList` is in `java.util`.
+- Some code will not have the main() method. In this case assume the main() method, class definition, and all necessary imports are present.
+
+## Creating Objects
+
+- An Object is an instance of a Class. To create an instance of a class you just need: `Class class = new Class();`.
+- Constructors are a special type of method that creates a new object.
+- The name of the constructor matches the name of the class and there is no return type.
+  ``` 
+   public class Chick {
+    public Chick() {} // This is right
+    public ChickConstructor() {} // Wrong
+    public void Chick() {} // Wrong
+   }
+  ```
+- The main purpose of a constructor is to initialize fields. But you can also initialize a field directly on line.
+  ``` 
+   public class Chicken {
+    int numEggs = 0; // On line
+    String name;
+    public Chicken() {
+      name = "Duke"; // On constructor
+    }
+   }
+  ``` 
+- For most cases you don't need to declare a constructor. There is one scenario that will be explain in Chapter 5.
+- It is possible to read and write on fields directly from the caller like: `chicken.numEggs = 0;`.
+- `Code block` is a code between braces {}.
+- Code blocks outside a method are called `instance initializers`.
+- Order of initialization:
+  - `Fields` and `instance initializers` are run in the ORDER THEY APPEAR in the file.
+  - The `constructor` runs AFTER all `fields` and `instance initializers` have run.
