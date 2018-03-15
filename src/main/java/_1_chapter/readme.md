@@ -136,3 +136,101 @@
 - Order of initialization:
   - `Fields` and `instance initializers` are run in the ORDER THEY APPEAR in the file.
   - The `constructor` runs AFTER all `fields` and `instance initializers` have run.
+  
+## Distinguish Between Object References and Primitives
+
+### Primitive Types
+
+- Java has 8 built-in data types refered as `Primitive Types`. 
+- They are building blocks fo Java objects, because Java objects are a complex collection of primitive data types.
+- For the exam you need to know the relative sizes and what can be stored in each one of them.
+
+| Keyword       | Type                        |
+| ------------- | --------------------------- |
+| boolean       | true or false               |
+| byte          | 8-bit integral value        |
+| short         | 16-bit integral value       |
+| int           | 32-bit integral value       |
+| long          | 64-bit integral value       |
+| float         | 32-bit floating-point value |
+| double        | 64-bit floating-point value |
+| char          | 16-bit Unicode value        |
+
+- A float requires the letter f following the number (i.e., 123.45f) so Java knows it is float.
+- You should know a byte can hold a value from -128 to 127.
+  - A byte is 8 bits = 2ˆ8 = 256 values
+  - Since we have 0 (zero) included, Java takes from positive side.
+- When a number is present in the code it is called a `literal`. By default Java understands numbers as an `int`.
+  ``` 
+   long max = 3123456789; // DOES NOT COMPILE 
+  ``` 
+  - This does not compile because the number is bigger than an `int`. 
+  - You need to explicit that the number is not an `int` and it is a `long` with the lette L in the end.
+  ``` 
+     long max = 3123456789L; // Works now 
+  ``` 
+- The is a way to change the base of numbers:
+  - octal (digits 0-7): prefix is `0`, for example `017`
+  - hexadecimal (digits 0-9 and letters A-F): prefix is `0x` or `0X`, for example `0xFF` 
+  - binary (digits 0-1): prefix is `0b` or `0B`, for example `0b10` 
+- You can have underscores in numbers to make them easier to read: 
+  ``` 
+     int million1 = 1000000;
+     int million2 = 1_000_000; 
+  ``` 
+- Underscores can be added anywhere except:
+  - beginning of a literal = `_1000.00`;
+  - end of a literal = `1000.00_`;
+  - right before a decimal point = `1000_.00`;
+  - right after a decimal point = `1000._00`.
+
+### Reference Types
+
+- `Reference types` refers to an object.
+- Unlike `primitive types` (that holds their values in memory), references do not hold the value of the object they refer to.
+- `Reference types` points to an object by storing the memory address where the object is located = `pointer`.
+- A value is assigned to a reference in one of the two ways:
+  - assigned to another object of the same type (`String greeting = "How are you?";`);
+  - assigned to a new object using the new keyword (`Date today = new Data();`);
+  
+### Primitive vs. Reference
+
+- Reference types can be assigned null. Primitive types will give an error if you attempt to assign null;
+- Reference types can be used to call methods. Primitive types do not have methods declared.  
+- Primitive types begin with lowercase and reference types, since they are classes, they start with uppercase.
+
+## Declaring and Initializing Variables
+
+- You can declare and initialize multiple variables in the same line if they are from same type: `String s3 = "yes", s4 = "no";`
+- Java has rules regarding `identifiers`:
+  - It cannot start with numbers;
+  - Special characters are not allowed, such as `@`, `*`;
+  - The name must begin with a `letter` or the symbol `$` or `_`;
+  - Subsequent characters may also be numbers; 
+  - You cannot use Java reserved words.
+  
+## Understanding Default Initialization of Variables
+
+**Local Variable**
+- A `local variable` is a variable defined within a method.
+- Must be initialized before use.
+- Do not have default value.
+- Contains garbage data until initialized.
+- The compiler will not allow read uninitialized value, and show an error: `Variable <var> might not have been initialized`.
+
+**Instance and Class Variable**
+- `Instance variables` are also called fields.
+- `Class variables` are shared across multiple objects. You can tell a variable is a class variable because it has the keyword `static`.
+- They are not required to be initialized. 
+- As soon as they are declared they receive default value.
+  - `null` to objects and `0/false` to primitives.
+
+| Variable Type                           | Default Initialization Value |
+| --------------------------------------- | ---------------------------- |
+| boolean                                 | false                        |
+| byte, short, int, long                  | 0                            |
+| float, double                           | 0.0                          |
+| char                                    | '\u0000' (NUL)               |
+| All object references (everything else) | null                         |
+
+*MEMORIZE THIS TABLE FOR EXAM* 
