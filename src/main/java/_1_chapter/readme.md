@@ -1,11 +1,12 @@
 # Chapter 1 - Java Building Blocks
 
+## Understanding the Java Class Structure
 - Java building blocks: `class`, `interface` and `enum` (not part of OCA).
 - An `object` is a runtime instance of a `class` in memory.
 - All `objects` instantiated represents the state of the program.
 - Classes have `fields` and `methods` as members.
 
-## Comments
+### Comments
 - Comments (do not appear on OCA exam)
   - Single-line comment: `// sigle-line comment`
   - Multiple-line comment: 
@@ -22,13 +23,13 @@
      */
     ```
 
-## Classes vs. Files
+### Classes vs. Files
 - Java does not require that the class be `public`.
 - It is possible to put two classes in the same file. 
   - If you do so, at most one of the classes in the file is allowed to be public.
   - If there is a public class it needs to match the filename.
   
-## main() Method
+## Writing a main() Method
 - The result of a file `.java` compilation is a file of `bytecode` with the same name but with `.class` extension.
 - Each file can contain only one class.
 - The filename must match the class name, including case, and have `.java` extension.
@@ -233,4 +234,56 @@
 | char                                    | '\u0000' (NUL)               |
 | All object references (everything else) | null                         |
 
-*MEMORIZE THIS TABLE FOR EXAM* 
+*MEMORIZE THIS TABLE FOR EXAM*
+
+## Understanding Variable Scope
+
+- Each set of braces {} is a block of code. Each block of code has its own scope.
+- Blocks contains other blocks. The smaller contained blocks can reference variables defined in the larger scoped blocks, but not vice versa.
+- Rule are:
+  - Local variables: in scope from declaration until end of the block;
+  - Instance variables: in scope from declaration until object garbage collection;
+  - Class (static) variables: in scope from declaration until program ends.
+  
+## Ordering Elements in a Class
+
+| Element             | Required? | Where?                    |
+| ------------------- | --------- | ------------------------- |
+| Package declaration | No        | First line in the file    |
+| Import statements   | No        | Immediately after package |
+| Class declaration   | Yes       | Immediately after import  |
+| Field declarations  | No        | Anywhere inside the class |
+| Method declarations | No        | Anywhere inside the class |
+ 
+ - Multiple classes can be defined in the same file, but only one can be public.
+ - If a class is public it needs to match the file name.
+ - A file is allowed to not have any public class. The rule is just that we can have only one public.
+ - On OCA we need to know `inner classes`, which are classes within a class.
+ 
+## Destroying Objects
+
+- Java provides a garbage collector that collects objects that are not needed anymore.
+- All java objects are stored on `heap` memory.
+- Garbage collection refers to the process of automatically freeing memory on the heap by deleting objects that are no longer reachable.
+- Important! System.gc() is not guaranteed to run and we should recognize objects that are eligible or garbage collection.
+- System.gc() do not run Garbage Collector. It just suggests to Java that should be a good time for it, but Java can ignore it.
+- An object will remain on the heap until is no longer reachable. An object is no longer reachable in two situations:
+  - The object no longer has any references pointing to it;
+  - All references to the object have gone out of scope.
+  
+**Objects vs. References**
+- Reference: is a variable that has a name and can be used to access the contents of an object;
+- Object: sits on the heap and does not have a name. They can only be accessed via a reference.
+
+**finalize()**
+- Java allows to implement a method `finalize()` that is called when the garbage collector tries to collect the object.
+- If garbage collector does not run the method does not get called.
+- If garbage collector fails to collect the object and tries to run again the method does not get called a second time.
+
+## Benefits of Java
+- Object Oriented
+- Encapsulation: access modifiers allow classes to encapsulate data.
+- Platform Independent: Java is an interpreted language because it gets compiled to bytecode. The benefit is that you need to compile it once for different OS.
+- Robust: it prevents memory leak.
+- Simple: by not providing pointer.
+- Secure: because it runs on JVM that creates a sandbox.
