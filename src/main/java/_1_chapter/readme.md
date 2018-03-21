@@ -208,7 +208,7 @@
   - Special characters are not allowed, such as `@`, `*`;
   - The name must begin with a `letter` or the symbol `$` or `_`;
   - Subsequent characters may also be numbers; 
-  - You cannot use Java reserved words.
+  - You cannot use Java reserved words. Java is case sensitive, so you can use versions of keywords that only differ in case.
   
 ## Understanding Default Initialization of Variables
 
@@ -234,7 +234,7 @@
 | char                                    | '\u0000' (NUL)               |
 | All object references (everything else) | null                         |
 
-*MEMORIZE THIS TABLE FOR EXAM*
+**MEMORIZE THIS TABLE FOR EXAM**
 
 ## Understanding Variable Scope
 
