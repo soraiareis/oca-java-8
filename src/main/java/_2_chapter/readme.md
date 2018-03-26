@@ -44,7 +44,7 @@
   - division /
   - modulus % = remainder operator = remainder of two values (11 % 2 is 2) 
 - Also includes ++ and --
-- All `arithmetic operators` may be applied to any primitive, except boolean and String.
+- All `arithmetic operators` may be applied to any primitive, except boolean.
 - Only + and += may be applied to String, which results in concatenation.
 
 ### Numeric Promotion Rules
@@ -253,11 +253,121 @@
 - The primary difference between `while` and `do-while`, is the a `do-while` reinforce that the statement will be executed before the expression is ever evaluated.
 
 ### The `for` Statement
+- A `for` statement looks like this:
+  ```
+  for (initialization; booleanExpression; updateStatement){
+    // code
+  } 
+  ```
+- The `initialization` and the `updateStatement` sections may contain multiple statements, separated by commas.
+- Variables declared in the `initialization` have limited scope: only inside the `for` loop.
+- Alternatively, variables declared before the loop but assigned a value inside the `initialization` may be used outside.
+- The `booleanExpression` is evaluated on every iteration of the loop `before` the loop executes.
+- The `updateStatement` is executed after the loop block of code is done.
+
+**SITUATIONS ON THE EXAM**
+
+- **Creating an Infinite Loop**
+  ```
+  for ( ; ; ){
+    System.out.println("Hello World");
+  } 
+  ```
+  - Although it seems it will throw a compiler error, this in fact will compile and print same statement over and over.
+  - The components of a `for` are optional, but the semicolons are required. This will not compile: `for (  )`.
+
+- **Adding Multiple Terms to the `for` Statement**
+  ```
+  int x = 0;
+  for (long y = 0, z = 4; x < 5 && y < 10; x++, y++){
+    System.out.println(y + " ");
+  } 
+  ```
+
+- **Redeclaring a Variable in the Initialization Block**
+  ```
+  int x = 0;
+  for (long y = 0, x = 4; x < 5 && y < 10; x++, y++){ // DOES NOT COMPILE
+    System.out.println(x + " ");
+  } 
+  ```
+  - This scenario does not compile because `x` is being redeclared in the initialization.
+  - Removing the declaration on the first line or moving the `y` declaration to outside should work.
+
+- **Using Incompatible Data Types in the Initialization Block**
+  ```
+  for (long y = 0, int x = 4; x < 5 && y < 10; x++, y++){ // DOES NOT COMPILE
+    System.out.println(x + " ");
+  } 
+  ```
+  - In this scenario it does not compile because the variables in the initialization needs to be of the same data type.
+
+- **Using Loop Variables Outside the Loop**
+  ```
+  for (long y = 0, x = 4; x < 5 && y < 10; x++, y++){ 
+    System.out.println(y + " ");
+  } 
+  System.out.println(x); // DOES NOT COMPILE
+  ```
+  - This scenario does not compile because `x` variable is declared inside the loop and cannot be used outside.
 
 ### The `for-each` Statement
-
+- A `for-each` statement looks like this:
+  ```
+  for (datatype instance : collection){
+    // code
+  } 
+  ```
+- The `collection` must be a built-in Java array or an object whose class implements `java.lang.Iterable`, which includes most of the Java Collections framework (List and ArrayList).
+- The `datatype instance` must be a declaration for an instance of a variable, whose type must matches the type of a member of the `collection`.
+  
 ## Understanding Advanced Flow Control
 
+### Adding Optional Labels
+- `if-then` statements, `switch` statement and `loops` can all have optional labels.
+- A label is an optional pointer to the head of a statement that allow applications to jump to it or break from it.
+- It is a single word proceeded by a colon (:).
+  ```
+  int[][] myComplexArray = {{5,2,1,3},{3,9,8,9},{5,7,12,7}};
+  OUTER_LOOP: for (int[] mySimpleArray : myComplexArray) {
+    INNER_LOOP: for (int i = 0; i < mySimpleArray.length; i++) {
+      System.out.print(mySimpleArray[i] + "\t");
+    }
+    System.out.println();
+  }
+  ```
+- This is rarely considered good coding practice.
+
+**This topic is not on OCA exam.**
+  
 ### The `break` Statement
+- A `break` statement transfers the flow control to the enclosing statement. It will not execute the loop anymore.
+- A `break` statement looks like this:
+  ```
+  optional_label: while (booleanExpression){
+    // code
+    break optional_label;
+  } 
+  ```
+- Notice that a `break` statement can take an optional label parameter.
+- Without a label parameter, the `break` statement will terminate the nearest inner loop it is currently in the process of executing.
+- With a label parameter it will jump to the label line.
 
 ### The `continue` Statement
+- A `continue` statement causes flow to finish the execution of the current loop. It finishes the current iteration of the loop, but continues in the loop for next iteration.
+  ```
+  optional_label: while (booleanExpression){
+    // code
+    continue optional_label;
+  } 
+  ```
+- Without a label parameter, the `continue` statement is applied to the nearest inner loop under execution.
+- You can use labels to override this behavior.
+
+|          | Allows optional labels | Allows unlabeled break | Allows continue statement |
+| -------- | ---------------------- | ---------------------- | ------------------------- |
+| if       | Yes                    | No                     | No                        |
+| while    | Yes                    | Yes                    | Yes                       |
+| do while | Yes                    | Yes                    | Yes                       |
+| for      | Yes                    | Yes                    | Yes                       |
+| switch   | Yes                    | Yes                    | No                        |
