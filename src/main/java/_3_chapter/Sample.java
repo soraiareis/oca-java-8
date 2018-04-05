@@ -1,7 +1,5 @@
 package _3_chapter;
 
-import java.awt.SystemTray;
-
 public class Sample {
 
   public static void main(String[] args) {
@@ -26,5 +24,11 @@ public class Sample {
 
     System.out.println("abc".trim()); // abc
     System.out.println("\t    a b c\n".trim()); // a b c
+
+    StringBuilder a = new StringBuilder("abc");
+    StringBuilder b = a.append("de");
+    b = b.append("f").append("g");
+    System.out.println("a=" + a);   // abcdefg
+    System.out.println("b=" + b);   // abcdefg
   }
 }
