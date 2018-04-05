@@ -217,6 +217,7 @@
   System.out.println(x.equals(y));     // true
   ```
 - If a class does not have an `equals()` method, Java determines if the reference points to the same object.
+- Java does not allow comparison (==) of String and StringBuilder. The code does not compile.
   
 ## Understanding Java Arrays
 - An `array` is an area of memory on the heap with space for a designated number of elements.
@@ -488,6 +489,7 @@
 - `Period` is an arbitrary period of time. 
 - It is a day or more of a time.
 - It only works with `LocalDate` or `LocalDateTime` (does not work with `LocalTime`).
+- It does not allow chaining, so the last Period method call counts.
   ```
   Period anually = Period.ofYears(1);
   Period quarterly = Period.ofMonths(3);
@@ -495,6 +497,8 @@
   Period everyOtherDay = Period.ofDays(2);
   Period everyYearAndAWeek = Period.of(1, 0, 7);
   
+  Period quarterly = Period.ofYears(1).ofMonths(3); // Only last method call counts
+
   LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
   date = date.plus(anually);
   ```

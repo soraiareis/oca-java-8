@@ -13,11 +13,9 @@ public class Sample {
     System.out.println(string.substring(3, 6)); // mal
     System.out.println(string.substring(3, 7)); // mals
 
-
     System.out.println("abc".equals("ABC")); // false
     System.out.println("ABC".equals("ABC")); // true
     System.out.println("abc".equalsIgnoreCase("ABC")); // false
-
 
     System.out.println("abcabc".replace('a', 'A')); // AbcAbc
     System.out.println("abcabc".replace("ab", "AB")); // ABcABc
@@ -28,7 +26,7 @@ public class Sample {
     StringBuilder a = new StringBuilder("abc");
     StringBuilder b = a.append("de");
     b = b.append("f").append("g");
-    System.out.println("a=" + a);   // abcdefg
-    System.out.println("b=" + b);   // abcdefg
+    System.out.println("a=" + a); // abcdefg
+    System.out.println("b=" + b); // abcdefg
   }
 }
