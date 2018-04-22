@@ -202,13 +202,15 @@
   ```
   String x = "Hello World";
   String y = " Hello World".trim();
-  System.out.println(x == y);     // false - y is computed at runtime, since is different runtime a new object is created
+  System.out.println(x == y);     // false - y is computed at runtime, since is different runtime 
+                                  // a new object is created
   ```
   
   ```
   String x = new String("Hello World");
   String y = "Hello World";
-  System.out.println(x == y);     // false - when we specify new String() we tell Java to create a new object
+  System.out.println(x == y);     // false - when we specify new String() we tell Java to create 
+                                  // a new object
   ```
 - To validate logical equality instead of object equality we can use `equals()`:
   ```
