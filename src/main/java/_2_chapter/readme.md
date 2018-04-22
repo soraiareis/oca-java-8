@@ -131,18 +131,16 @@
 | ----------- | -------- | --------- |
 | x = true    | true     | false     |
 | x = false   | false    | false     |
-
-**x | y (INCLUSIVE OR)** 
-| .         | y = true | y = false |
-| --------- | -------- | --------- |
-| x = true  | true     | true      |
-| x = false | true     | false     |
-
-**x ^ y (EXCLUSIVE OR)** 
-|           | y = true | y = false |
-| --------- | -------- | --------- |
-| x = true  | false    | true      |
-| x = false | true     | false     |
+ 
+| x | y (INCLUSIVE OR) | y = true | y = false |
+| -------------------- | -------- | --------- |
+| x = true             | true     | true      |
+| x = false            | true     | false     |
+ 
+| x ^ y (EXCLUSIVE OR) | y = true | y = false |
+| -------------------- | -------- | --------- |
+| x = true             | false    | true      |
+| x = false            | true     | false     |
 
 - Tips to remember this table:
   - AND is only `true` if both operands are `true`
