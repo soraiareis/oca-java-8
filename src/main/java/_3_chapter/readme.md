@@ -313,8 +313,10 @@
 ### Creating an ArrayList
 - Possible ways to initiate an ArrayList:
   ```
-  ArrayList list1 = new ArrayList();      // Creates an ArrayList with space for default number of elements, but not fill it.  
-  ArrayList list2 = new ArrayList(10);    // Creates an ArrayList with a specific number of slots, but also not fill it.
+  ArrayList list1 = new ArrayList();      // Creates an ArrayList with space for default number of 
+                                          // elements, but not fill it.  
+  ArrayList list2 = new ArrayList(10);    // Creates an ArrayList with a specific number of slots, 
+                                          // but also not fill it.
   ArrayList list3 = new ArrayList(list2); // Creates a copy of list2. It copies both size and values.
   
   ArrayList<String> list4 = new ArrayList<String>();  // Creates an ArrayList with specific type.
@@ -414,8 +416,10 @@
   String[] array = {"hawk", "robin"};         // [hawk, robin]
   List<String> list = Arrays.asList(array);
   System.out.println(list.size());            // 2
-  list.set(1, "test");                        // [hawk, test] - change both list and array (they point to same reference)
-  array[0] = "new";                           // [new, test] - change both list and array (they point to same reference)
+  list.set(1, "test");                        // [hawk, test] - change both list and array 
+                                              // (they point to same reference)
+  array[0] = "new";                           // [new, test] - change both list and array 
+                                              // (they point to same reference)
   list.remove(1);                             // throws UnsupportedOperation Exception
   ```
 
