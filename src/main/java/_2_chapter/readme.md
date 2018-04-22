@@ -132,7 +132,7 @@
 | x = true    | true     | false     |
 | x = false   | false    | false     |
  
-| x | y (INCLUSIVE OR) | y = true | y = false |
+| x \| y (INCLUSIVE OR) | y = true | y = false |
 | -------------------- | -------- | --------- |
 | x = true             | true     | true      |
 | x = false            | true     | false     |
