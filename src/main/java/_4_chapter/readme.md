@@ -7,7 +7,7 @@
     // take a nap
   }
   
-  <access modifier> <optional specifier> <return type> <method name>(<parameters>) <optional exception list>{
+  <access modifier> <optional specifier> <return type> <name>(<params>) <optional exception list>{
     // method code
   }
   ```
