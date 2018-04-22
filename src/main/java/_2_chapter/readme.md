@@ -127,14 +127,13 @@
 - When applied to `numeric` they are referred to as `bitwise operators`.
 - When applied to `boolean` they are referred to as `logical operators`.
 
-**x & y (AND)** 
-|           | y = true | y = false |
-| --------- | -------- | --------- |
-| x = true  | true     | false     |
-| x = false | false    | false     |
+| x & y (AND) | y = true | y = false |
+| ----------- | -------- | --------- |
+| x = true    | true     | false     |
+| x = false   | false    | false     |
 
 **x | y (INCLUSIVE OR)** 
-|           | y = true | y = false |
+| .         | y = true | y = false |
 | --------- | -------- | --------- |
 | x = true  | true     | true      |
 | x = false | true     | false     |
