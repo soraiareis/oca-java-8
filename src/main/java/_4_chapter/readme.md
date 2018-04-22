@@ -245,7 +245,7 @@
 - `lambda expression` including optional parts:
   ```
   (Animal a) -> { return a.canHop(); }
-  (<optional parameter type> <parameter name>) -> { return <body>; } // return and ; required because in block
+  (<optional parameter type> <parameter name>) -> { return <body>; } // return and ; required in {}
   ```
 - Java does not allow us to redeclare a local variable, so the following is an issue:
   ```
