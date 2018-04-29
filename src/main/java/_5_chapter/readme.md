@@ -3,7 +3,7 @@
 ## Introducing Class Inheritance
 - `Inheritance` is the process by which the new child subclass automatically includes any public or protected primitives, objects, or methods defined in the parent class.
 - Java supports `single inheritance`, by which a class may inherits from only one direct parent class.
-- Java also support multiple levels of inheritance, by which one class ,ay extend another class, which in turn extends another class.
+- Java also support multiple levels of inheritance, by which one class may extend another class, which in turn extends another class.
 - You can extend a class any number of times, allowing each descendent to gain access to its ancestor's member.
 - Java does allow one exception to the `single inheritance` rule: classes may implement multiple interfaces.
 - It is possible to prevent a class from being extended by marking the class with the `final` modifier.
@@ -48,7 +48,7 @@
 - The parent constructor is always executed before the child constructor. 
 
 ### Calling Inherited Class Members
-- Java classes mayb use any `public` or `protected` member of the parent class, including methods, primitives, or objects references.
+- Java classes may be use any `public` or `protected` member of the parent class, including methods, primitives, or objects references.
 - If the parent class and child class are part of the same package, the child may also use any default members defined in the parent class.
 - A child class may never access a `private` member of the parent class, at least not through any direct reference.
   - A `private` member may be accessed indirectly via a `public` or `protected` method.
