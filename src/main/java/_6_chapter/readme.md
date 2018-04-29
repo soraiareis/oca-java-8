@@ -46,6 +46,7 @@
   throw new RuntimeException("Ow! I fell.");
   ```
 - When creating an exception you can usually pass a `String` parameter with a message or you can pass no parameter.
+
 | Type              | How to recognize                                           | Okay for program to catch? | Is program required to handle or declare? |
 | ----------------- | ---------------------------------------------------------- | -------------------------- | ----------------------------------------- |
 | Runtime exception | Subclass of RuntimeException                               | Yes                        | No                                        |
