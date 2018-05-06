@@ -1,7 +1,8 @@
 # Chapter 3 - Core Java APIs
 
-- API stands for Application Programming Interface. 
+- API stands for Application Programming Interface.
 - The Java APIs are a group of class or interface definitions that gives you access to a service or functionality.
+
 
 ## Creating and Manipulating Strings
 
@@ -36,12 +37,12 @@
   String name = "Fluffy"; // Uses string pool
   String name = new String("Fluffy"); // Do NOT use string pool, and is less efficient
   ```
-  
+
 ### Important String Methods
 - Need to remember:
   - String is a sequence of characters;
   - Java counts from 0 when indexed.
-  
+
 - `length()`: returns the number of characters in the String.
   - Method signature: `int length()`
   ```
@@ -57,7 +58,7 @@
 - `indexOf()`: looks at the string and finds the first index that matches the desired value.
   - Can work with individual character or string as input.
   - Returns -1 when no match is found.
-  - Methods signature: 
+  - Methods signature:
     - `int indexOf(int ch)`
     - `int indexOf(int ch, int fromIndex)`
     - `int indexOf(String str)`
@@ -72,7 +73,7 @@
 - `substring()`: it returns parts of the string.
   - The first parameter is the index to start with.
   - The second parameter is optional, and is the end you want to stop at (it does not include this index).
-  - Methods signature: 
+  - Methods signature:
       - `String substring(int beginIndex)`
       - `String substring(int beginIndex, int endIndex)`
   ```
@@ -80,22 +81,22 @@
   System.out.println(string.substring(3)); // mals
   System.out.println(string.substring(3, 6)); // mal
   System.out.println(string.substring(3, 7)); // mals
-  
+
   System.out.println(string.substring(3, 3)); // empty string
   System.out.println(string.substring(3, 2)); // throws exception
   System.out.println(string.substring(3, 8)); // throws exception
   ```
 - `toLowerCase()` and `toUpperCase()`: it converts the string to lower or upper case.
-  - Methods signature: 
+  - Methods signature:
     - `String toLowerCase()`
     - `String toUpperCase()`
 - `equals()` and `equalsIgnoreCase()`: checks if two String objects contain exactly the same characters in the same order.
-  - Methods signature: 
+  - Methods signature:
     - `boolean equals(Object obj)`
     - `boolean equalsIgnoreCase(String str)`
 - `startsWith()` and `endsWith()`: look at whether the provided value matches part of the String.
   - **Important!** It is case-sensitive.
-  - Methods signature: 
+  - Methods signature:
     - `boolean startsWith(String prefix)`
     - `boolean endsWith(String suffix)`
 - `contains()`: also look if value matches part of the String, but it can be anywhere.
@@ -103,7 +104,7 @@
   - Method signature: `boolean contains(String str)`
 - `replace()`: does a simple search and replace on the string.
   - It replaces all the matches.
-  - Methods signature: 
+  - Methods signature:
     - `String replace(char oldChar, char newChar)`
     - `String replace(CharSequence oldChar, CharSequence newChar)`
   ```
@@ -117,26 +118,26 @@
   System.out.println("abc".trim()); // abc
   System.out.println("\t    a b c\n".trim()); // a b c
   ```
-  
+
 ## Using the StringBuilder Class
   ```
   10: String alpha = "";
-  11: for (char current 'a'; current <= 'z'; current++)
+  11: for (char current = 'a'; current <= 'z'; current++)
   12:   alpha += current;
   13: System.out.println(alpha);
   ```
-- The above code block generates a new String every time it passes on line 12, because String is immutable an cannot be changed. 
+- The above code block generates a new String every time it passes on line 12, because String is immutable an cannot be changed.
 - The `StringBuilder` class creates String without storing all those interim String values.
-- Unlike `String` class, `StringBuilder` class is not immutable. 
+- Unlike `String` class, `StringBuilder` class is not immutable.
   ```
   15: StringBuilder alpha = new StringBuilder();
-  16: for (char current 'a'; current <= 'z'; current++)
+  16: for (char current = 'a'; current <= 'z'; current++)
   17:   alpha.append(current);
   18: System.out.println(alpha);
   ```
 
 ### Mutability and Chaining
-- When we chain `String` method calls, the result is a new String with the answer. 
+- When we chain `String` method calls, the result is a new String with the answer.
 - Chaining `StringBuilder` does NOT work this way. `StringBuilder` changes its own state and returns a reference to itself.
   ```
   StringBuilder sb = new StringBuilder("start");
@@ -151,12 +152,12 @@
   System.out.println("a=" + a);   // abcdefg
   System.out.println("b=" + b);   // abcdefg
   ```
-  - The is only one `StringBuilder` object in this code. We can say that because `new StringBuilder();` was called just once.
+  - There is only one `StringBuilder` object in this code. We can say that because `new StringBuilder();` was called just once.
 - There are 3 ways of creating a `StringBuilder`:
   - `StringBuilder sb1 = new StringBuilder();` // empty
   - `StringBuilder sb2 = new StringBuilder("animal");` // create the object with "animal" character sequence
   - `StringBuilder sb3 = new StringBuilder(10);` // reserve a certain amount of slots
-  
+
 ### Important StringBuilder Methods
 - `charAt()`, `indexOf()`, `length()` and `substring()`: are the same as in String class.
 - `append()`: it adds the parameter to the StringBuilder and returns a reference to the current StringBuilder.
@@ -172,14 +173,14 @@
   sb.insert(4, "-");    // sb = -ani-mals-
   ```
 - `delete()` and `deleteCharAt()`: it removes characters of the StringBuilder.
-  - Methods signature: 
+  - Methods signature:
     - `StringBuilder delete(int start, int end)`
     - `StringBuilder deleteCharAt(int index)` // removes just one character
 - `reverse()`: it reverses the characters of the StringBuilder.
   - Method signature: `StringBuilder reverse()`
 - `toString()`: converts StringBuilder into String.
   - Method signature: `String toString()`
-  
+
 ### StringBuilder vs. StringBuffer
 - `StringBuffer` is the older version, do the same thing, but it is slower because it is thread safe.
 - `StringBuilder` is the best option now.
@@ -189,27 +190,27 @@
   StringBuilder one = new StringBuilder();
   StringBuilder two = new StringBuilder();
   StringBuilder three = one.append("a");
-  System.out.println(one == two);     // false - complete differente objects
+  System.out.println(one == two);     // false - complete different objects
   System.out.println(one == three);   // true - points to the same objects
   ```
-  
+
   ```
   String x = "Hello World";
   String y = "Hello World";
   System.out.println(x == y);     // true - both are on the same location of memory
   ```
- 
+
   ```
   String x = "Hello World";
   String y = " Hello World".trim();
-  System.out.println(x == y);     // false - y is computed at runtime, since is different runtime 
+  System.out.println(x == y);     // false - y is computed at runtime, since is different runtime
                                   // a new object is created
   ```
-  
+
   ```
   String x = new String("Hello World");
   String y = "Hello World";
-  System.out.println(x == y);     // false - when we specify new String() we tell Java to create 
+  System.out.println(x == y);     // false - when we specify new String() we tell Java to create
                                   // a new object
   ```
 - To validate logical equality instead of object equality we can use `equals()`:
@@ -220,7 +221,7 @@
   ```
 - If a class does not have an `equals()` method, Java determines if the reference points to the same object.
 - Java does not allow comparison (==) of String and StringBuilder. The code does not compile.
-  
+
 ## Understanding Java Arrays
 - An `array` is an area of memory on the heap with space for a designated number of elements.
 - A `String` and `StringBuilder` are an array with some methods. The `StringBuilder` array can be replaced with bigger arrays.
@@ -240,17 +241,17 @@
   ```
   int[] numbers2 = {42, 55, 99}; // this is called anonymous array
   ```
-- You can type [] before or after the name:  
+- You can type [] before or after the name:
   ```
   int[] numAnimals;
   int numAnimals2[];
   ```
-  
+
 ### Creating an Array with Reference Variables
 - Arrays can be created with any type, even with classes we create.
   ```
   String[] bugs = {"cricket", "beetle", "ladybug"};
-  String[] alias = = bugs;
+  String[] alias = bugs;
   System.out.println(bugs.equals(alias));     // true
   System.out.println(bugs.toString());        // [Ljava.lang.String;@160bc7c0
   java.util.Arrays.toString(bugs);            // [cricket, beetle, lady-bug]
@@ -283,10 +284,10 @@
   - When an unsorted array is presented look for an answer `unpredictable output`.
 - `Varargs`: variable arguments.
   - Syntax: `String... args`
-  
+
 ### Multidimensional Arrays
 
-- Can be declared like:  
+- Can be declared like:
   ```
   int[][] vars1;
   int vars2[][];
@@ -303,22 +304,23 @@
   args[0] = new int[5];
   args[1] = new int[3];
   ```
-  
+
 ## Understanding an ArrayList
 
 - An `array` you have to choose the size of it and you are stuck with that choice.
 - An `ArrayList` let you size at runtime as needed.
-- `ArrayList` is just like an `array`, an ordered list that can contains duplicates. 
+- `ArrayList` is just like an `array`, an ordered list that can contains duplicates.
+- None of them are `immutable` (values can be changed, only size of `arrays` cannot be changed).
 
 ### Creating an ArrayList
 - Possible ways to initiate an ArrayList:
   ```
-  ArrayList list1 = new ArrayList();      // Creates an ArrayList with space for default number of 
-                                          // elements, but not fill it.  
-  ArrayList list2 = new ArrayList(10);    // Creates an ArrayList with a specific number of slots, 
+  ArrayList list1 = new ArrayList();      // Creates an ArrayList with space for default number of
+                                          // elements, but not fill it.
+  ArrayList list2 = new ArrayList(10);    // Creates an ArrayList with a specific number of slots,
                                           // but also not fill it.
   ArrayList list3 = new ArrayList(list2); // Creates a copy of list2. It copies both size and values.
-  
+
   ArrayList<String> list4 = new ArrayList<String>();  // Creates an ArrayList with specific type.
   ArrayList<String> list5 = new ArrayList<>();        // We can omit the type on the right side.
   ```
@@ -335,7 +337,7 @@
 - `add()`: insert a new value on the `ArrayList`.
   - Methods signature:
     - `boolean add(E element)` // always returns true
-    - `void add(int index, E element)` 
+    - `void add(int index, E element)`
 - `remove()`: removes the first matching value in the `ArrayList`.
   - Methods signature:
     - `boolean remove(Object object)` // return whether a match was removed
@@ -352,11 +354,11 @@
   - Method signature: `boolean contains(Object object)`
 - `equals()`: compare two lists to see if they contain the same elements in the same order.
   - Method signature: `boolean equals(Object object)`
-  
+
 ### Wrapper Classes
 - How can we use primitives with `ArrayList`?
   - We need to use `Wrapper Classes`, which is an object type that corresponds to the primitive.
-  
+
 | Primitive Type | Wrapper Class     |
 | -------------- | ----------------- |
 | boolean        | Boolean           |
@@ -366,7 +368,7 @@
 | long           | Long              |
 | float          | Float             |
 | double         | Double            |
-| char           | Character         | 
+| char           | Character         |
 
 - Converting String to primitive or wrapper class.
 
@@ -385,7 +387,7 @@
 - The process of typing primitive values and Java converting it into the relevant wrapper class.
   ```
   List<Double> weights = new ArrayList<>();
-  weights.add(50.5);
+  weights.add(50.5);                  // autoboxes double primitive to Double class
   weights.add(new Double(60));
   ```
 - Be careful autoboxing Integer. Removes takes an int parameter, Java calls that method instead of autoboxing.
@@ -416,9 +418,9 @@
   String[] array = {"hawk", "robin"};         // [hawk, robin]
   List<String> list = Arrays.asList(array);
   System.out.println(list.size());            // 2
-  list.set(1, "test");                        // [hawk, test] - change both list and array 
+  list.set(1, "test");                        // [hawk, test] - change both list and array
                                               // (they point to same reference)
-  array[0] = "new";                           // [new, test] - change both list and array 
+  array[0] = "new";                           // [new, test] - change both list and array
                                               // (they point to same reference)
   list.remove(1);                             // throws UnsupportedOperation Exception
   ```
@@ -460,9 +462,9 @@
     - `LocalDateTime.of(date1, time1);                        // passing LocalDate and LocalTime objects`
 - We are NOT allowed to construct a date and time objects directly.
   ```
-  LocalDate d = new LocalDate(); // DOES NOT COMPILE 
+  LocalDate d = new LocalDate(); // DOES NOT COMPILE
   ```
-  
+
 ### Manipulating Dates and Times
 - Date and time classes are immutable, so we need to remember to assign the results to a reference variable so they are not lost.
   ```
@@ -472,27 +474,27 @@
   date = date.plusMonths(1);                              // 2014-02-28
   date = date.plusYears(5);                               // 2019-02-28
   date = date.minusDays(1);                               // 2019-02-27
-  
+
   LocalTime time = LocalTime.of(5, 15);
-  
+
   LocalDateTime dateTime = LocalDateTime.of(date, time);  // 2019-02-27T05:15
-  
+
   dateTime = dateTime.minusHours(2);                     // 2019-02-27T03:15
   ```
-  
+
 - It is common for date and time to be chained:
   ```
   LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
-  
+
   LocalTime time = LocalTime.of(5, 15);
-  
+
   LocalDateTime dateTime = LocalDateTime.of(date, time);  // 2014-01-20T05:15
-  
+
   dateTime = dateTime.plusDays(2).minusHours(2);          // 2014-01-22T03:15
   ```
-  
+
 ### Working with Periods
-- `Period` is an arbitrary period of time. 
+- `Period` is an arbitrary period of time.
 - It is a day or more of a time.
 - It only works with `LocalDate` or `LocalDateTime` (does not work with `LocalTime`).
 - It does not allow chaining, so the last Period method call counts.
@@ -502,13 +504,13 @@
   Period everyThreeWeeks = Period.ofWeeks(3);
   Period everyOtherDay = Period.ofDays(2);
   Period everyYearAndAWeek = Period.of(1, 0, 7);
-  
+
   Period quarterly = Period.ofYears(1).ofMonths(3); // Only last method call counts
 
   LocalDate date = LocalDate.of(2014, Month.JANUARY, 20);
-  date = date.plus(anually);
+  date = date.plus(anually);                              // 2015-01-20
   ```
-  
+
 - `Duration` is intended for smaller units of time (days, hours, minutes, seconds or nanoseconds).
 - `Duration` is not on the exam since it works the same as `Period`.
 
@@ -520,26 +522,26 @@
   System.out.println(date.getMonth());                    // JANUARY
   System.out.println(date.getYear());                     // 2020
   System.out.println(date.getDayOfYear());                // 20
-  ``` 
+  ```
 - `DateTimeFormatter` class provides a way to format any type of date and/or time object.
   ```
   LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
   LocalTime time = LocalTime.of(11, 12, 34);
   LocalDateTime dateTime = LocalDateTime.of(date, time);
-  
+
   System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE));          // 2020-01-20
   System.out.println(time.format(DateTimeFormatter.ISO_LOCAL_TIME));          // 11:12:34
   System.out.println(dateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)); // 2020-01-20T11:12:34
-  
+
   // Using FormatStyle
   System.out.println(date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)));
   System.out.println(time.format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
   System.out.println(dateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
-  
+
   // Create your own format
   System.out.println(date.format(DateTimeFormatter.ofPattern("MM-dd-yyyy")));
   ```
-  
+
 ### Parsing Dates and Times
   ```
   DateTimeFormatter f = DateTimeFormatter.ofPattern("MM dd yyyy");
