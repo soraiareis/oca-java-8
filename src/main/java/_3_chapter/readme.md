@@ -3,7 +3,6 @@
 - API stands for Application Programming Interface.
 - The Java APIs are a group of class or interface definitions that gives you access to a service or functionality.
 
-
 ## Creating and Manipulating Strings
 
 ### Concatenation
@@ -158,6 +157,12 @@
   - `StringBuilder sb2 = new StringBuilder("animal");` // create the object with "animal" character sequence
   - `StringBuilder sb3 = new StringBuilder(10);` // reserve a certain amount of slots
 
+### Capaciyy
+- When `StringBuilder` is constructed `new StringBuilder();` it may start at the default capacity of 16.
+- The programmer can also choose the capacity on creation: `new StringBuilder(10);`.
+- But if the the programmer passes a `String` on the constructor `new StringBuilder("animal");`, the capacity with be the size of the `String` plus the default capacity.
+ - In this case the string is 6, plus the default 16, the capacity will be 22.
+
 ### Important StringBuilder Methods
 - `charAt()`, `indexOf()`, `length()` and `substring()`: are the same as in String class.
 - `append()`: it adds the parameter to the StringBuilder and returns a reference to the current StringBuilder.
@@ -274,6 +279,11 @@
 ### Using an Array
 - `length` returns the array size.
 - `Arrays.sort()` allows to sort array elements.
+  - Sort order: `numbers`, `uppercase letters` and then `lowercase letters`.
+    ```
+    String[] strings = {"N", "L", "n", "O", "S"};
+    System.out.println(Arrays.sort(strings));       // [L, N, O, S, n]
+    ```
 - `Arrays.binarySearch(array, value)` allows to search in a *sorted* array (needs to be sorted).
   ```
   int[] numbers = {2, 4, 6, 8};
@@ -324,6 +334,14 @@
   ArrayList<String> list4 = new ArrayList<String>();  // Creates an ArrayList with specific type.
   ArrayList<String> list5 = new ArrayList<>();        // We can omit the type on the right side.
   ```
+- If the type is not specified it can take any kind of object except primitive.
+  ```
+  List list = new ArrayList();
+  list.add(1);
+  list.add("A");
+  list.add(new Integer(5));
+  System.out.println(list);     // [1, A, 5]
+  ```
 - `ArrayList` implements an interface called `List`, which means an `ArrayList` is a `List`.
 - We can store an `ArrayList` in a `List`, but not vice versa (interfaces cannot be instantiated).
   ```
@@ -372,16 +390,19 @@
 
 - Converting String to primitive or wrapper class.
 
-| Wrapper Class  | String to Primitive Type      | String to Wrapper Class     |
-| -------------- | ----------------------------- | --------------------------- |
-| Boolean        | Boolean.parseBoolean("true"); | Boolean.valueOf("TRUE");    |
-| Byte           | Byte.parseByte("1");          | Byte.valueOf("2");          |
-| Short          | Short.parseShort("1");        | Short.valueOf("2");         |
-| Integer        | Integer.parseInt("1");        | Integer.valueOf("2");       |
-| Long           | Long.parseLong("1");          | Long.valueOf("2");          |
-| Float          | Float.parseFloat("1");        | Float.valueOf("2");         |
-| Double         | Double.parseDouble("1");      | Double.valueOf("2.2");      |
-| Character      | None                          | None                        |
+| Wrapper Class  | String to Primitive Type      | String to Wrapper Class                       |
+| -------------- | ----------------------------- | --------------------------------------------- |
+| Boolean        | Boolean.parseBoolean("true"); | Boolean.valueOf("TRUE");                      |
+| Byte           | Byte.parseByte("1");          | Byte.valueOf("2");                            |
+| Short          | Short.parseShort("1");        | Short.valueOf("2");                           |
+| Integer        | Integer.parseInt("1");        | Integer.valueOf("2"); or Integer.decode("2"); |
+| Long           | Long.parseLong("1");          | Long.valueOf("2");                            |
+| Float          | Float.parseFloat("1");        | Float.valueOf("2");                           |
+| Double         | Double.parseDouble("1");      | Double.valueOf("2.2");                        |
+| Character      | None                          | None                                          |
+
+- `new Boolean(String s)`: if passing a non null string equal to "true" - ignoring case (so it can be "True", or "true", or "TRUE", etc.) - it will be `true`. Otherwise, it will be false.
+  - `new Boolean("yes")`: produces `false`.
 
 ### Autoboxing
 - The process of typing primitive values and Java converting it into the relevant wrapper class.

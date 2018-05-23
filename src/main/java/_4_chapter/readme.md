@@ -13,17 +13,18 @@
   ```
 
 ### Access Modifiers
-- There are four choices fo access modifiers:
-  - `public`: the method can be called from any class.
+- There are four choices fo access modifiers (most restrictive to least restrictive):
   - `private`: the method can only be called within the same class.
-  - `protected`: the method can only be called by classes in the same package or subclasses.
   - `default (package private) access` (omitted access modifier): the method can only be called by classes in the same package.
+  - `protected`: the method can only be called by classes in the same package or subclasses.
+  - `public`: the method can be called from any class.
+  
 
 ### Optional Specifiers
 - You can have multiple specifiers in the same method (although not all combinations are legal).
 - The possible specifiers are: 
   - `static`: used for class methods.
-  - `final`: used when a method cannot be overridden by a subclass.
+  - `final`: used when a class cannot be extended, or a method cannot be overridden by a subclass, or a variable cannot be reassigned to another value.
   - `synchronized`: Not on OCA exam. Only on OCP.
   - `native`: Neither on OCA nor on OCP exams. Used when interacting with code written in another language.
   - `strictfp`: Neither on OCA nor on OCP exams. Used for making floating-point calculations portable.
@@ -227,6 +228,10 @@
 - A `lambda expression` is a block of code that gets passed around.
 - A `lambda expression` is like a method that you can pass as if it were a variable.
 
+- Functional interface should only have one abstract method.
+- It is optional to include default and static methods.
+- It is optional to have @FunctionalInterface annotation.
+
 ### Lambda Syntax
 - The simplest lambda expression you can write is (they are equivalent):
   ```
@@ -266,3 +271,7 @@
   bunnies.removeIf(s -> s.charAt(0) != 'h');
   System.out.println(bunnies);              // [hoppy]
   ```
+  
+
+ 
+  

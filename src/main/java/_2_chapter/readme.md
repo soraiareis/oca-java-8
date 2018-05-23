@@ -42,7 +42,7 @@
   - subtraction -
   - multiplication *
   - division /
-  - modulus % = remainder operator = remainder of two values (11 % 2 is 2) 
+  - modulus % = remainder operator = remainder of two values (11 % 3 is 2) 
 - Also includes ++ and --
 - All `arithmetic operators` may be applied to any primitive, except boolean.
 - Only + and += may be applied to String, which results in concatenation.
@@ -226,11 +226,22 @@
   - short and Short
   - char and Character
   - int and Integer
+  - String
   - enum values
 
 - The values in each `case` statement must be compile-time constant values of the same data type as the `switch` value. 
   - This means you can only use `literals`, `enums` or `final constant variables`. 
-  - If a variable is final, but been passed as a parameter, it is not considered constant and therefore not valid. 
+  - If a variable is final, but been passed as a parameter, it is not considered constant and therefore not valid.
+- Duplicate `case` statements are not allowed:
+  ```
+  final int = 1;
+  switch (i){
+    case 1: 
+      // code 
+    case 1:   // DO NOT COMPILE
+      // code
+  } 
+  ```
 - If `break;` is being use in each case, the order of the cases does not matter. However, without `break;` statements the order matters since after an execution of one `case`, it will go automatically to the next case and continues until it reaches a `break;` or the end.
  
 

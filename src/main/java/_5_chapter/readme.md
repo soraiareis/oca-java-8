@@ -15,6 +15,7 @@
 - You can apply access modifiers to classes.
 - The `public` access modifier applied to a class indicates that it can be referenced and used in any class.
 - The `default package private` modifier indicates the class can be accessed only by a class within the same package.
+- `protected` and `private` cannot be used with classes.
 
 ### Creating Java Objects
 - All classes inherit from `java.lang.Object` (it is the only class that does not have a parent class).
@@ -22,6 +23,7 @@
 ### Defining Constructors
 - The first statement of every constructor is either a call to another constructor within the class, using this(), or a call to a constructor in the direct parent class, using super().
 - Like the `this()` command, the `super()` command may only be used as the first statement of the constructor.
+  - With this rule, a call to both `this()` and `super()` in the same constructor are not allowed since they both need to be the first statement. 
 - If the parent class has more than one constructor, the child class may use any valid parent constructor.
 
 **Understanding Compiler Enhancements**
@@ -41,15 +43,15 @@
 1. The first statement of every constructor is a call to another constructor within the class using `this()`, or a call to a constructor in the direct parent class using `super()`.
 2. The `super()` call may not be used after the first statement of the constructor.
 3. If no `super()` call is declared in a constructor, Java will insert a no-argument `super()` as the first statement of the constructor.
-4. If the parent does not have no-argument constructor and the child does not define any constructors, the compiler will throw and error and try to insert a default no-argument constructor into the child class.
+4. If the parent does not have no-argument constructor and the child does not define any constructors, the compiler will throw an error and try to insert a default no-argument constructor into the child class.
 5. If the parent does not have no-argument constructor, the compiler requires an explicit call to a parent constructor in each child constructor.
 
 **Calling Constructors**
 - The parent constructor is always executed before the child constructor. 
 
 ### Calling Inherited Class Members
-- Java classes may be use any `public` or `protected` member of the parent class, including methods, primitives, or objects references.
-- If the parent class and child class are part of the same package, the child may also use any default members defined in the parent class.
+- Java classes may use any `public` or `protected` member of the parent class, including methods, primitives, or objects references.
+- If the parent class and child class are part of the same package, the child may also use any `default` members defined in the parent class.
 - A child class may never access a `private` member of the parent class, at least not through any direct reference.
   - A `private` member may be accessed indirectly via a `public` or `protected` method.
 - You can use the keyword `this` to access a member of the parent class that are accessible from the child class.
@@ -125,7 +127,7 @@
 
 **Redeclaring private Methods**
 - In Java it is not possible to override a `private` method in a parent class since the parent method is not accessible from the child class.
-- Just because the child class does not have access it does not mean the child class can not define its own version of the method.
+- Just because the child class does not have access it does not mean the child class cannot define its own version of the method.
   - It just mean that the method on child class is not an overridden version.
 
 **Hiding Static Methods**
@@ -136,32 +138,6 @@
 
 **Overriding vs. Hiding Methods**
 - `Overriding` a method the child method replaces the parent method in calls of both parent and child.
-  ```
-  public class Marsupial {
-    public static boolean isBiped() {
-      return false;
-    }
-    public void getMarsupialDescription() {
-      System.out.println("Marsupial walks on two legs: " + isBiped());
-    }
-  }
-  
-  public class Kangaroo extends Marsupial {
-    public static boolean isBiped() {
-      return true;
-    }
-    public void getKangarooDescription() {
-      System.out.println("Kangaroo hops on two legs: " + isBiped());
-    }
-    public static void main(String[] args) {
-      Kangaroo joey = new Kangaroo();
-      joey.getMarsupialDescription();     // Marsupial walks on two legs: false
-      joey.getKangarooDescription();      // Kangaroo hops on two legs: true
-    }
-  }
-  ```
-  
-- A `hiding` method only replace parent methods in the calls defined in the child class. 
   ```
   public class Marsupial {
     public boolean isBiped() {
@@ -186,6 +162,32 @@
     }
   }
   ```
+  
+- A `hiding` method only replace parent methods in the calls defined in the child class.
+  ```
+  public class Marsupial {
+    public static boolean isBiped() {
+      return false;
+    }
+    public void getMarsupialDescription() {
+      System.out.println("Marsupial walks on two legs: " + isBiped());
+    }
+  }
+  
+  public class Kangaroo extends Marsupial {
+    public static boolean isBiped() {
+      return true;
+    }
+    public void getKangarooDescription() {
+      System.out.println("Kangaroo hops on two legs: " + isBiped());
+    }
+    public static void main(String[] args) {
+      Kangaroo joey = new Kangaroo();
+      joey.getMarsupialDescription();     // Marsupial walks on two legs: false
+      joey.getKangarooDescription();      // Kangaroo hops on two legs: true
+    }
+  }
+  ```
 
 **Creating final methods**
 - `final` methods cannot be overridden or hidden.
@@ -193,7 +195,7 @@
 
 ### Inheriting Variables
 - Java does not allow variables to be overridden but instead hidden.
-- When you hide a variable you define a variable with the same name as a variable in a parent class.
+- When you hide a variable you define a variable with the same name as a variable in a parent class (it does not need to be `static` to be hidden).
 - This creates two copies of the variable within an instance of the child class:
   - one instance defined for the parent reference;
   - another defined for the child reference.
@@ -334,7 +336,7 @@
 ### Inheriting an Interface
 - Inheritance rules to extend an interface:
 1. An interface that extends another interface, as well as an abstract class that implements and interface, inherits all of the abstract methods as its own abstract methods.
-2. The first concrete class that implements an interface, or extends and abstract class that implements an interface, must provide an implementation for all of the inherited abstract methods.
+2. The first concrete class that implements an interface, or extends an abstract class that implements an interface, must provide an implementation for all of the inherited abstract methods.
 
 - An `interface` may be extended using `extends` keyword.
 - An `interface` may extend multiple interfaces.
@@ -388,7 +390,7 @@
 
 ### Default Interface Methods
 - A `default method` is a method defined within an interface with the `default` keyword in which a method body is provided.
-- A `default method` defined an abstract method with a default implementation.
+- A `default method` defines an abstract method with a default implementation.
 - Classes have the option to override the default method, but they are not required to do so.
   - If the class does not override the method, the default implementation will be used.
 
@@ -424,7 +426,8 @@
   
   public class Bunny implements Hop {
     public void printDetails() {
-      System.out.println(getJumpHeight());  // DOES NOT COMPILE - should be Hop.getJumpHeight()
+      System.out.println(getJumpHeight());  // DOES NOT COMPILE
+                                            // should be Hop.getJumpHeight()
     }
   }
   ```
@@ -478,7 +481,7 @@
   Lemur lemur = new Lemur();
   Object lemurAsObject = lemur;
   ```
-- Even though the Lemur object has been assigned a reference with a different type, the object itself has not changed (ans exists as Lemur object in memory).
+- Even though the Lemur object has been assigned a reference with a different type, the object itself has not changed (and exists as Lemur object in memory).
 - What change is the ability to access methods within the Lemur class with the `lemurAsObject` reference.
   - Without an explicit cast back to Lemur, we no longer have access to Lemur properties of the object.
 - So, the rules are:
@@ -574,3 +577,32 @@
     }
   }
   ```
+- Polymorphism does not apply to `static` methods. So, invoking an overloaded method with parent class reference will cause invoking the parent class method itself.
+- The above code behaves differently if `getName()` is `static` or `non-static`. 
+  - It would print `Feeding: Reptile` for all 3 lines.
+  
+### Overload versus Override
+| Property      | Overload                                | Override                                                           |
+| ------------- | --------------------------------------- | ------------------------------------------------------------------ |
+| Method Name   | Must be the same name                   | Must be the same name                                              |
+| Argument List | Must be different                       | Must be the same                                                   |
+| Return Type   | Can be different                        | Must be the same or covariant returns                              |
+| Exceptions    | Can be different                        | Cannot throw new checked exceptions. Can narrow exceptions thrown. |
+| Access Level  | Can be different                        | Must be the same or less restrictive                               |
+| Invocation    | Reference type determines which version | Object type determines which version                               |
+
+### Abstract versus Interface
+| Abstract                                                                                                                                                   | Interface                                                                                                                              |              
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------|
+| An abstract class can extend only one class or one abstract class at a time                                                                                |	An interface can extend any number of interfaces at a time                                                                            |
+| An abstract class can extend another concrete (regular) class or abstract class	                                                                           | An interface can only extend another interface                                                                                         |
+| An abstract class can have static, final, static final or non-static and non-final variable with any access specifier	                                     | An interface can only have public static final (constant) variable                                                                     |
+| An abstract class can have both abstract and concrete methods	                                                                                             | An interface can have abstract methods, static methods or default methods                                                              |
+| In an abstract class is mandatory to declare a method as an abstract (must have keyword “abstract”)	                                                       | In an interface is optional to declare a method as an abstract (keyword “abstract” is implicit - except for static or default methods) |
+| An abstract class can have default (package private), protected and public abstract methods (cannot be private). Only non-abstract methods can be private. | An interface can have only have public methods (either abstract, default or static).                                                   |
+	
+**Similarities**	
+- Abstract classes and interfaces cannot be instanciated.	
+- As a top-level Abstract class or interface cannot be marked as private or protected.	
+- Abstract classes and interfaces cannot be marked as final.	
+- An Abstract methods cannot be marked as private or final.	  

@@ -138,6 +138,12 @@
   - `Fields` and `instance initializers` are run in the ORDER THEY APPEAR in the file.
   - The `constructor` runs AFTER all `fields` and `instance initializers` have run.
   
+### Type of Classes
+- `Top-level`: is a class that is not a nested class.
+- `Nested class`: is any class whose declaration occurs within the body of another class or interface.
+- `Top-level` classes cannot be declared `static`, only `nested classes` can be.
+- `Top-level` classes cannot be `private` nor `protected`, only `nested classes` can be.
+
 ## Distinguish Between Object References and Primitives
 
 ### Primitive Types

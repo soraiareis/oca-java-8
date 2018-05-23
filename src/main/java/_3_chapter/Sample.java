@@ -2,6 +2,14 @@ package _3_chapter;
 
 public class Sample {
 
+  public Sample() {
+    super();
+
+  }
+
+  public Sample(String teste) {
+  }
+
   public static void main(String[] args) {
     String string = "animals";
     System.out.println(string.indexOf('a')); // 0
@@ -28,5 +36,6 @@ public class Sample {
     b = b.append("f").append("g");
     System.out.println("a=" + a); // abcdefg
     System.out.println("b=" + b); // abcdefg
+
   }
 }
