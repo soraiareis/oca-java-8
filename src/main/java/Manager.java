@@ -3,4 +3,5 @@ public class Manager extends Person {
     System.out.println("CT");
   }
   {System.out.println("IT");}
+  static {System.out.println("MP");}
 }
